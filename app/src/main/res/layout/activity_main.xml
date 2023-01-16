@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:weightSum="10"
+    android:orientation="vertical">
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10sp"
+        android:background="@color/purple_200"
+        android:padding="10sp"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="@color/red"
+        android:textSize="40sp" />
+
+   <!-- <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="5" />-->
+
+    <TextView
+        android:id="@+id/tvTwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10sp"
+        android:background="@color/black"
+        android:paddingTop="11sp"
+        android:paddingBottom="11sp"
+        android:text="@string/name"
+        android:textAlignment="center"
+        android:textColor="@color/red"
+        android:textSize="40sp" />
+
+   <!-- <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="5" />-->
+
+    <TextView
+        android:id="@+id/tvThree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5sp"
+        android:background="@color/purple_700"
+        android:text="@string/class_name"
+        android:textAlignment="center"
+        android:textColor="@color/yellow"
+        android:textSize="40sp" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rbOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pay_on"
+            android:textColor="@color/purple_700"
+            android:textSize="30sp" />
+
+        <RadioButton
+            android:id="@+id/rbTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pay_of"
+            android:textColor="@color/teal_700"
+            android:textSize="30sp" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/bOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="@string/order"
+        android:textSize="25sp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your Name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your Password"
+        android:inputType="numberPassword" />
+
+    <Button
+        android:id="@+id/bTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/teal_700"
+        android:text="@string/src_br"
+        android:textSize="25sp"
+        android:layout_gravity="center"/>
+    <Button
+        android:id="@+id/bThree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_700"
+        android:text="@string/dial_pd"
+        android:textSize="25sp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

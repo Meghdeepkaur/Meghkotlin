@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Meghdeepkaur</string>
+    <string name="name">Meghdeep kaur</string>
+    <string name="class_name">BCA(sem-5)</string>
+    <string name="Dish1">Manchurian</string>
+    <string name="Dish2">Noodles</string>
+    <string name="Dish3">Samose Chole</string>
+    <string name="pay_on">Online payment</string>
+    <string name="pay_of">Offline payment</string>
+    <string name="order">Confirm Order</string>
+    <string name="login">Login to your Account</string>
+    <string name="btn">LOGIN</string>
+    <string name="user_name">Enter your Name</string>
+    <string name="user_pass">Enter the secure Password</string>
+    <string name="user_id">Enter your Email ID</string>
+    <string name="user_reg">Not Registered Yet? Sign Up Now!</string>
+    <string name="btn_reg">Register YourSelf</string>
+    <string name="tv_reg_h">Registration Form</string>
+    <string name="reg_ph">Enter your Phone Number</string>
+    <string name="name1">NAME</string>
+    <string name="email">E-Mail ID</string>
+    <string name="pas">PASSWORD</string>
+    <string name="cpas">CONFIRM PASSWORD</string>
+    <string name="ph">PHONE NUMBER</string>
+    <string name="reg">Register</string>
+    <string name="src_br">Browse the Content </string>
+    <string name="dial_pd">Dial Pad</string>
+
+
+</resources>
