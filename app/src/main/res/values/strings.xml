@@ -25,6 +25,9 @@
     <string name="reg">Register</string>
     <string name="src_br">Browse the Content </string>
     <string name="dial_pd">Dial Pad</string>
+    <string name="sub">Submit</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

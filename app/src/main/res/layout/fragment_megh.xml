@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MeghFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/hello_blank_fragment" />
+    <Button
+        android:id="@+id/b_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sub"
+        android:textSize="25sp"
+        />
+    </LinearLayout>-->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/tvHead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10sp"
+            android:background="@color/purple_500"
+            android:padding="10sp"
+            android:text="@string/login"
+            android:textColor="#FDFCFC"
+            android:textSize="20sp"
+
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/insert_text" />
+
+
+            <EditText
+                android:id="@+id/etNam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/user_name"
+                android:inputType="text"
+                android:autofillHints="Name"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/mail" />
+
+            <EditText
+                android:id="@+id/etId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:autofillHints="Email ID"
+                android:hint="@string/user_id"
+                android:inputType="textEmailAddress" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/password" />
+
+            <EditText
+                android:id="@+id/etPas"
+                android:layout_width="335dp"
+                android:layout_height="wrap_content"
+                android:autofillHints="Password"
+                android:hint="@string/user_pass"
+                android:inputType="numberPassword" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:src="@drawable/visibility" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnLog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn"
+            android:textSize="20sp"
+            android:backgroundTint="@color/black"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            />
+        <Button
+            android:id="@+id/btnReg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_reg"
+            android:textSize="20sp"
+            android:backgroundTint="@color/black"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+
+            />
+        <TextView
+            android:id="@+id/tvReg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_vertical"
+            android:text="@string/user_reg"
+            android:textSize="20sp"
+            android:textColor="@color/teal_700"
+            android:textAlignment="center"
+            />
+
+
+    </LinearLayout>
+
+</FrameLayout>
