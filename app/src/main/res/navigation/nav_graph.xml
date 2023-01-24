@@ -12,6 +12,11 @@
         android:label="@string/app_name"
         tools:layout="@layout/fragment_megh" />
     <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.meghdeepkaur.RegistrationFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_registration" />
+    <fragment
         android:id="@+id/firstFragment"
         android:name="com.example.meghdeepkaur.FirstFragment"
         android:label="@string/app_name"

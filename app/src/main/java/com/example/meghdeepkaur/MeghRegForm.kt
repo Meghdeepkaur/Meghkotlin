@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 
 class MeghRegForm : AppCompatActivity() {
    // var binding: MeghRegForm ?= null
@@ -19,7 +20,6 @@ class MeghRegForm : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_megh_reg_form)
-
         val test = intent.extras
         val tvSix: EditText = findViewById(R.id.reg_name)
         tvSix.setText(test?.getString("myText") ?: "Name")
@@ -29,7 +29,7 @@ class MeghRegForm : AppCompatActivity() {
             reg_mail = findViewById(R.id.reg_mail)
             reg_ph = findViewById(R.id.reg_ph)
             reg_pas = findViewById(R.id.reg_pas)
-        reg_cpas = findViewById(R.id.reg_cpas)
+            reg_cpas = findViewById(R.id.reg_cpas)
             reg.setOnClickListener {
                 onButtonClick()
             }

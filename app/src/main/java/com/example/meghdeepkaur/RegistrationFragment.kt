@@ -25,12 +25,14 @@ class RegistrationFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var fragNav: FragNav
+    var dataFromMegh: String=""
 
     var binding: FragmentRegistrationBinding?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         fragNav= activity as FragNav
+        dataFromMegh= arguments?.getString("dataFromMegh")?:""
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -46,8 +48,19 @@ class RegistrationFragment : Fragment() {
         binding?.reg?.setOnClickListener{
             onButtonClick()
         }
+        binding?.tv1?.text=dataFromMegh
         return binding?.root
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fragNav.updateAppBarTitle("Registration Fragment")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding=null
     }
 
     fun onButtonClick() {
