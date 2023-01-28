@@ -29,6 +29,16 @@
     <string name="sub">Submit</string>
     <string name="person">Person</string>
     <string name="more">More</string>
+    <string name="name_empty">Name cannot be Empty</string>
+    <string name="congrats">Congratulations</string>
+    <string name="details_filled">You are successfully Login into the App</string>
+    <string name="positive">Positive</string>
+    <string name="negative">Negative</string>
+    <string name="neutral">Neutral</string>
+    <string name="ok">OK</string>
+
+
+    "
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

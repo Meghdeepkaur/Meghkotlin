@@ -1,5 +1,6 @@
 package com.example.meghdeepkaur
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import com.example.meghdeepkaur.databinding.FragmentMeghBinding
+import com.google.android.material.snackbar.Snackbar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,7 +30,7 @@ class MeghFragment : Fragment() {
     private var param2: String? = null
     lateinit var fragNav: FragNav
     var binding: FragmentMeghBinding?=null
-
+    val TAG= this.javaClass.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,19 +61,27 @@ class MeghFragment : Fragment() {
         return binding?.root
     }
    fun onButtonClick() {
-        Log.e("loginForm", "Button clicked")
+
+       var snackbar= Snackbar.make(binding?.root!!,resources.getText(R.string.name_empty),
+       Snackbar.LENGTH_LONG)
+       snackbar.setAction(resources.getText(R.string.ok)){
+
+       }
+       snackbar.show()
+        Log.e(TAG, "Button clicked")
         Log.e("loginForm", binding?.etNam?.text.toString())
         Log.e("loginForm", binding?.etId?.text.toString())
-        if(binding?.etNam?.text.toString().isEmpty()) {
-            Toast.makeText(activity,
-                "Name cannot be Empty",
-                Toast.LENGTH_LONG).show()
+        if(binding?.etNam?.text?.isEmpty()==true) {
+            var toast= Toast.makeText(activity,
+                (R.string.name_empty),
+                Toast.LENGTH_LONG)
+            toast.show()
         }
         else if(binding?.etId?.text.toString().isEmpty()) {
             Toast.makeText(activity,
                 "Email cannot be null. Please enter your Email ID",
                 Toast.LENGTH_LONG).show()
-
+            binding?.etNam?.error=resources.getText(R.string.name_empty)
         }
        else if(binding?.etPas?.length()==8) {
             Toast.makeText(activity,
@@ -84,6 +94,19 @@ class MeghFragment : Fragment() {
                 "Valid Data",
                 Toast.LENGTH_LONG).show()
         }
+       var alertDialog= AlertDialog.Builder(activity)
+       alertDialog.apply {
+           setTitle(resources.getText(R.string.congrats))
+           setMessage(resources.getText(R.string.details_filled))
+           setPositiveButton(resources.getText(R.string.positive)){_,_->
+           }
+           setNegativeButton(resources.getText(R.string.negative)){_,_->
+           }
+           setNeutralButton(resources.getText(R.string.neutral)){_,_->
+           }
+           setCancelable(false)
+       }
+       alertDialog.show()
     }
 
     override fun onResume() {
