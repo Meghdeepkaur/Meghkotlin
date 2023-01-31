@@ -1,6 +1,7 @@
 package com.example.meghdeepkaur
 
 import android.app.AlertDialog
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import com.example.meghdeepkaur.databinding.FragmentMeghBinding
 import com.google.android.material.snackbar.Snackbar
@@ -32,6 +34,10 @@ class MeghFragment : Fragment() {
     var binding: FragmentMeghBinding?=null
     val TAG= this.javaClass.simpleName
 
+
+    var sharedPreferences: SharedPreferences ?= null
+    var sharedPreferencesEditor: SharedPreferences.Editor?= null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         fragNav= activity as FragNav
@@ -40,6 +46,10 @@ class MeghFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        sharedPreferences = context?.getSharedPreferences(context?.resources?.getString(R.string.app_name),AppCompatActivity.MODE_PRIVATE)
+        //sharedPreferences = FragNav.getSharedPreferences(FragNav.resources.getString(R.string.app_name),AppCompatActivity.MODE_PRIVATE)
+
+        sharedPreferencesEditor = sharedPreferences?.edit()
     }
 
     override fun onCreateView(
@@ -107,6 +117,11 @@ class MeghFragment : Fragment() {
            setCancelable(false)
        }
        alertDialog.show()
+
+       sharedPreferencesEditor?.putString("name",(binding?.etNam?.text?: "").toString())
+       sharedPreferencesEditor?.apply()
+       sharedPreferencesEditor?.commit()
+
     }
 
     override fun onResume() {

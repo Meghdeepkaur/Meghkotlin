@@ -1,11 +1,16 @@
 package com.example.meghdeepkaur
 
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.example.meghdeepkaur.databinding.FragmentFirstBinding
+import android.Manifest
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,8 +26,31 @@ class FirstFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    val TAG = this.javaClass.simpleName
     var binding: FragmentFirstBinding?=null
+    var sharedPreferences: SharedPreferences?= null
     var dataFromMegh: String=""
+
+    var requestPermissionnLauncher=
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+            ) { isGranted ->
+            if (isGranted) {
+                selectImage.launch("image/*")
+                Log.e("TAG", "Permission Granted")
+            } else {
+                Log.e("TAG", "Permission Denied")
+            }
+
+        }
+    val selectImage = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ){
+        imageUri ->
+        Log.e(TAG, imageUri.toString())
+        binding?.iv1?.setImageURI(imageUri)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +59,7 @@ class FirstFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        sharedPreferences= context?.getSharedPreferences(context?.resources?.getString(R.string.app_name),AppCompatActivity.MODE_PRIVATE)
     }
 
     override fun onCreateView(
@@ -38,7 +67,14 @@ class FirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
        binding= FragmentFirstBinding.inflate(layoutInflater)
-        binding?.tvShowData?.text=dataFromMegh
+        //binding?.tvShowData?.text=dataFromMegh
+        binding?.tvShowData?.text = sharedPreferences?.getString("name","NO Data present")
+
+        binding?.bu1?.setOnClickListener{
+            requestPermissionnLauncher.launch(
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+        }
         return binding?.root
     }
 
