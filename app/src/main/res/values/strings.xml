@@ -9,7 +9,7 @@
     <string name="pay_of">Offline payment</string>
     <string name="order">Confirm Order</string>
     <string name="login">Login to your Account</string>
-    <string name="btn">LOGIN</string>
+    <string name="log_btn">LOGIN</string>
     <string name="user_name">Enter your Name</string>
     <string name="user_pass">Enter the secure Password</string>
     <string name="user_id">Enter your Email ID</string>
@@ -36,6 +36,7 @@
     <string name="negative">Negative</string>
     <string name="neutral">Neutral</string>
     <string name="ok">OK</string>
+    <string name="sel_image">Select the image from your Device</string>
 
 
     "

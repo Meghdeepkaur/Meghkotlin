@@ -89,10 +89,10 @@ class RegistrationFragment : Fragment() {
                 "Password must be AtLeast 8 Characters long",
                 Toast.LENGTH_LONG).show()
         }
-        else if(binding?.regPas!=binding?.regCpas) {
+        else if((binding?.regPas)!=(binding?.regCpas)) {
             Toast.makeText(
                 activity,
-                "Password  match",
+                "Password does not match",
                 Toast.LENGTH_LONG).show()
         }
         else{

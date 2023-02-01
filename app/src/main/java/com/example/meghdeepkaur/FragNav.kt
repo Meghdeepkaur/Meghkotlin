@@ -15,12 +15,13 @@ class FragNav : AppCompatActivity() {
         binding = ActivityFragNavBinding.inflate(layoutInflater)
         // setContentView(R.layout.activity_frag_nav)
         setContentView(binding?.root)
+        navController = findNavController(R.id.navController)
 
         setSupportActionBar(binding?.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         setupActionBarWithNavController(navController)
 
-        navController = findNavController(R.id.navController)
+
 
         binding?.bott?.setOnItemSelectedListener { menuItemSelected ->
             when (menuItemSelected.itemId) {

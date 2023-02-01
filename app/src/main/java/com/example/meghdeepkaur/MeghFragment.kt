@@ -86,12 +86,13 @@ class MeghFragment : Fragment() {
                 (R.string.name_empty),
                 Toast.LENGTH_LONG)
             toast.show()
+            binding?.etNam?.error=resources.getText(R.string.name_empty)
         }
-        else if(binding?.etId?.text.toString().isEmpty()) {
+        else if(binding?.etId?.text.toString().isEmpty()==true) {
             Toast.makeText(activity,
                 "Email cannot be null. Please enter your Email ID",
                 Toast.LENGTH_LONG).show()
-            binding?.etNam?.error=resources.getText(R.string.name_empty)
+
         }
        else if(binding?.etPas?.length()==8) {
             Toast.makeText(activity,
