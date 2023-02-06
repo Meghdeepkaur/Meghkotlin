@@ -20,5 +20,10 @@
         android:name="com.example.meghdeepkaur.FirstFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_first" />
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.meghdeepkaur.ListFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_list" />
 
 </navigation>

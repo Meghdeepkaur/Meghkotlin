@@ -28,6 +28,7 @@ class FragNav : AppCompatActivity() {
                 R.id.home -> navController.navigate(R.id.meghFragment)
                 R.id.person -> navController.navigate(R.id.firstFragment)
                 R.id.more -> navController.navigate(R.id.registrationFragment)
+                R.id.list -> navController.navigate(R.id.listFragment)
             }
             return@setOnItemSelectedListener true
         }
