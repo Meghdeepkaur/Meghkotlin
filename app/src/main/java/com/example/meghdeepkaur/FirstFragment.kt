@@ -11,6 +11,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.meghdeepkaur.databinding.FragmentFirstBinding
 import android.Manifest
+import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
+import android.content.Intent
+import android.graphics.Bitmap
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,40 +31,85 @@ class FirstFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     val TAG = this.javaClass.simpleName
-    var binding: FragmentFirstBinding?=null
-    var sharedPreferences: SharedPreferences?= null
-    var dataFromMegh: String=""
+    var binding: FragmentFirstBinding? = null
+    var sharedPreferences: SharedPreferences? = null
+    lateinit var fragNav: FragNav
+    var dataFromMegh: String = ""
 
-    var requestPermissionnLauncher=
+    var requestPermissionLauncherGal =
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
-            ) { isGranted ->
+        ) { isGranted: Boolean ->
             if (isGranted) {
                 selectImage.launch("image/*")
                 Log.e("TAG", "Permission Granted")
             } else {
                 Log.e("TAG", "Permission Denied")
+                var alertDialog = AlertDialog.Builder(activity)
+                alertDialog.apply {
+                    setTitle("Permission Required")
+                    setMessage("Permission required to run the App")
+                    setCancelable(false)
+                    setPositiveButton("Ok") { _, _ -> }
+                    alertDialog.show()
+                }
+            }
+        }
+
+
+
+    var requestPermissionLauncherCam =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted:Boolean ->
+            if (isGranted) {
+                selectImageFromCamera.launch(null)
+                Log.e("TAG", "Permission Granted")
+            } else {
+                Log.e("TAG", "Permission Denied")
+                var alertDialog = AlertDialog.Builder(activity)
+                alertDialog.apply {
+                    setTitle("Permission Required")
+                    setMessage("Permission required to run the App")
+                    setCancelable(false)
+                    setPositiveButton("Ok") { _, _ -> }
+                    alertDialog.show()
+                }
+
+            }
+        }
+
+
+
+            val selectImage = registerForActivityResult(
+                ActivityResultContracts.GetContent()
+            ) { imageUri ->
+                Log.e(TAG, imageUri.toString())
+                binding?.iv1?.setImageURI(imageUri)
             }
 
-        }
-    val selectImage = registerForActivityResult(
-        ActivityResultContracts.GetContent()
-    ){
-        imageUri ->
-        Log.e(TAG, imageUri.toString())
-        binding?.iv1?.setImageURI(imageUri)
-    }
+            val selectImageFromCamera = registerForActivityResult(
+                ActivityResultContracts.TakePicturePreview()
+            ) { imageBitmap ->
+                binding?.iv1?.setImageBitmap(imageBitmap)
+            }
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        dataFromMegh= arguments?.getString("dataFromMegh")?:""
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-        sharedPreferences= context?.getSharedPreferences(context?.resources?.getString(R.string.app_name),AppCompatActivity.MODE_PRIVATE)
-    }
+
+
+            override fun onCreate(savedInstanceState: Bundle?) {
+                super.onCreate(savedInstanceState)
+                fragNav= activity as FragNav
+                dataFromMegh = arguments?.getString("dataFromMegh") ?: ""
+                arguments?.let {
+                    param1 = it.getString(ARG_PARAM1)
+                    param2 = it.getString(ARG_PARAM2)
+                }
+                sharedPreferences = context?.getSharedPreferences(
+                    context?.resources?.getString(R.string.app_name),
+                    AppCompatActivity.MODE_PRIVATE
+                )
+            }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,13 +119,22 @@ class FirstFragment : Fragment() {
         //binding?.tvShowData?.text=dataFromMegh
         binding?.tvShowData?.text = sharedPreferences?.getString("name","NO Data present")
 
-        binding?.bu1?.setOnClickListener{
-            requestPermissionnLauncher.launch(
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            )
+        binding?.buGal?.setOnClickListener {
+            requestPermissionLauncherGal.launch(
+                Manifest.permission.READ_EXTERNAL_STORAGE)
         }
-        return binding?.root
+            binding?.buCam?.setOnClickListener {
+                requestPermissionLauncherCam.launch(
+                    Manifest.permission.CAMERA)
+            }
+                return binding?.root
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding=null
+    }
+
 
     companion object {
         /**

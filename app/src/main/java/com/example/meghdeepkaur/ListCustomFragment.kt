@@ -5,35 +5,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.ArrayAdapter
-import com.example.meghdeepkaur.databinding.FragmentListBinding
+import com.example.meghdeepkaur.adapters.MyListAdapter
+import com.example.meghdeepkaur.databinding.FragmentListCustomBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-
 /**
  * A simple [Fragment] subclass.
- * Use the [ListFragment.newInstance] factory method to
+ * Use the [ListCustomFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListFragment : Fragment() {
+class ListCustomFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    var binding: FragmentListBinding?= null
-    var adapter: Adapter?= null
+    var binding: FragmentListCustomBinding?= null
     lateinit var fragNav: FragNav
-
-
+    var myListAdapter: MyListAdapter?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        fragNav = activity as FragNav
+        fragNav= activity as FragNav
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -44,24 +39,20 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-      binding= FragmentListBinding.inflate(layoutInflater)
-        var arrayOfString: ArrayList<String> = arrayListOf("Megh","Sukh","parvinder","jashan")
+        binding= FragmentListCustomBinding.inflate(layoutInflater)
 
-        arrayOfString.add("sita")
-        arrayOfString.add("rita")
-       // arrayOfString.remove("Megh")
-       //   arrayOfString.clear()
+        var arrayOfString:ArrayList<String> = arrayListOf("Ekonkar","Satnam","Waheguru")
+        arrayOfString.add("Wah")
 
-        adapter =ArrayAdapter(fragNav,android.R.layout.simple_list_item_1,arrayOfString)
-        binding?.lv1?.adapter= adapter as ArrayAdapter<String>
+        myListAdapter = MyListAdapter(arrayOfString)
+        binding?.lview?.adapter = myListAdapter
         return binding?.root
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        binding= null
+        binding=null
     }
-
 
     companion object {
         /**
@@ -70,12 +61,12 @@ class ListFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ListFragment.
+         * @return A new instance of fragment ListCustomFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ListFragment().apply {
+            ListCustomFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
