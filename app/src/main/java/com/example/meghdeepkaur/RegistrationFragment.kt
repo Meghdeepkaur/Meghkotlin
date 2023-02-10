@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import com.example.meghdeepkaur.databinding.FragmentRegistrationBinding
 
@@ -25,6 +26,7 @@ class RegistrationFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var fragNav: FragNav
+
     var dataFromMegh: String=""
 
     var binding: FragmentRegistrationBinding?=null
@@ -33,6 +35,7 @@ class RegistrationFragment : Fragment() {
         super.onCreate(savedInstanceState)
         fragNav= activity as FragNav
         dataFromMegh= arguments?.getString("dataFromMegh")?:""
+
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -43,8 +46,8 @@ class RegistrationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= FragmentRegistrationBinding.inflate(layoutInflater)
 
+        binding= FragmentRegistrationBinding.inflate(layoutInflater)
         binding?.reg?.setOnClickListener{
             onButtonClick()
         }
@@ -89,18 +92,23 @@ class RegistrationFragment : Fragment() {
                 "Password must be AtLeast 8 Characters long",
                 Toast.LENGTH_LONG).show()
         }
-        else if((binding?.regPas)!=(binding?.regCpas)) {
+        else if(binding?.regCpas?.text.toString() != binding?.regPas?.text.toString()) {
             Toast.makeText(
                 activity,
                 "Password does not match",
-                Toast.LENGTH_LONG).show()
-        }
-        else{
+                Toast.LENGTH_LONG
+            ).show()
+        }else{
             Toast.makeText(
                 activity,
                 "VALID CREDENTIALS.",
                 Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding=null
     }
 
 

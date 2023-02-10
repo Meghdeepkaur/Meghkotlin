@@ -25,10 +25,10 @@ class FragNav : AppCompatActivity() {
 
         binding?.bott?.setOnItemSelectedListener { menuItemSelected ->
             when (menuItemSelected.itemId) {
-                R.id.home -> navController.navigate(R.id.meghFragment)
+                R.id.home -> navController.navigate(R.id.listCustomFragment)
                 R.id.person -> navController.navigate(R.id.firstFragment)
                 R.id.more -> navController.navigate(R.id.registrationFragment)
-                R.id.list -> navController.navigate(R.id.listFragment)
+                R.id.list -> navController.navigate(R.id.thirdFragment)
             }
             return@setOnItemSelectedListener true
         }
