@@ -5,10 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.meghdeepkaur.clickInterfaces.RecyclerClickTnterfaces
 import com.example.meghdeepkaur.databinding.AdapterNameBinding
 
-class NameAdapter (val context:Context):RecyclerView.Adapter<NameAdapter.ViewHolder>(){
+class NameAdapter (val context:Context,
+val arrayList: ArrayList<String>,val recyclerClickInterfaces: RecyclerClickTnterfaces):RecyclerView.Adapter<NameAdapter.ViewHolder>(){
     inner class ViewHolder(val binding: AdapterNameBinding?):RecyclerView.ViewHolder(binding?.root?: View(context)){
+        fun showData(position: Int){
+            binding?.btToast?.setOnClickListener{recyclerClickInterfaces.onClickListener(arrayList[position])}
+            binding?.textv?.text= arrayList[position]
+        }
 
     }
 
@@ -19,10 +25,11 @@ class NameAdapter (val context:Context):RecyclerView.Adapter<NameAdapter.ViewHol
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.showData(position)
 
     }
 
     override fun getItemCount(): Int {
-        return  20
+        return  arrayList.size
     }
 }

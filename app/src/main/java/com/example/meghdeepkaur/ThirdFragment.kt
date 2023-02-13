@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meghdeepkaur.adapters.NameAdapter
+import com.example.meghdeepkaur.clickInterfaces.RecyclerClickTnterfaces
 import com.example.meghdeepkaur.databinding.FragmentThirdBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,7 +33,13 @@ class ThirdFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         fragNav= activity as FragNav
-        adapter= NameAdapter(fragNav)
+        val arrayList= arrayListOf("ram","sham","Gita","sita","nita","kita")
+        adapter= NameAdapter(fragNav, arrayList, object: RecyclerClickTnterfaces{
+            override fun onClickListener(string: String) {
+                //super.onClickListener(string)
+                Toast.makeText(fragNav,string, Toast.LENGTH_LONG).show()
+            }
+        })
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -42,7 +51,10 @@ class ThirdFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding= FragmentThirdBinding.inflate(layoutInflater)
-        binding?.rv?.layoutManager= LinearLayoutManager(fragNav, LinearLayoutManager.VERTICAL,false)
+        //binding?.rv?.layoutManager= LinearLayoutManager(fragNav, LinearLayoutManager.VERTICAL,false)
+       // binding?.rv?.layoutManager= LinearLayoutManager(fragNav, LinearLayoutManager.HORIZONTAL,false)
+        binding?.rv?.layoutManager= GridLayoutManager(fragNav, 3)
+
         binding?.rv?.adapter= adapter
         return binding?.root
     }
