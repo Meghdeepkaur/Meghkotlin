@@ -5,12 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.meghdeepkaur.adapters.NameAdapter
-import com.example.meghdeepkaur.clickInterfaces.RecyclerClickTnterfaces
-import com.example.meghdeepkaur.databinding.FragmentThirdBinding
+import android.widget.AdapterView
+import com.example.meghdeepkaur.adapters.SpinnerAdapter
+import com.example.meghdeepkaur.databinding.FragmentSecondBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,27 +16,21 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ThirdFragment.newInstance] factory method to
+ * Use the [SecondFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ThirdFragment : Fragment() {
+class SecondFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    var binding: FragmentThirdBinding?= null
+    var binding: FragmentSecondBinding?= null
     lateinit var fragNav: FragNav
-    var adapter: NameAdapter?= null
+    var spinnerAdapter: SpinnerAdapter?= null
+    var selectedString=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         fragNav= activity as FragNav
-        val arrayList= arrayListOf("ram","sham","Gita","sita","nita","kita")
-        adapter= NameAdapter(fragNav, arrayList, object: RecyclerClickTnterfaces{
-            override fun onClickListener(string: String) {
-                //super.onClickListener(string)
-                Toast.makeText(fragNav,string, Toast.LENGTH_LONG).show()
-            }
-        })
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -50,16 +41,29 @@ class ThirdFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= FragmentThirdBinding.inflate(layoutInflater)
-        //binding?.rv?.layoutManager= LinearLayoutManager(fragNav, LinearLayoutManager.VERTICAL,false)
-       // binding?.rv?.layoutManager= LinearLayoutManager(fragNav, LinearLayoutManager.HORIZONTAL,false)
-        binding?.rv?.layoutManager= GridLayoutManager(fragNav, 3)
-        binding?.burec?.setOnClickListener{
-            adapter?.add("Bhawna")
-        }
+        binding= FragmentSecondBinding.inflate(layoutInflater)
 
-        binding?.rv?.adapter= adapter
+        var arrayOfString: ArrayList<String> = arrayListOf("First","Second","Third","Fourth")
+        spinnerAdapter= SpinnerAdapter(arrayOfString)
+        binding?.spin?.adapter = spinnerAdapter
+        binding?.spin?.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                selectedString = arrayOfString[p2]
+                binding?.ttv?.text = selectedString
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+        }
+        binding?.ttv?.text=selectedString
         return binding?.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding=null
     }
 
     companion object {
@@ -69,12 +73,12 @@ class ThirdFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ThirdFragment.
+         * @return A new instance of fragment SecondFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ThirdFragment().apply {
+            SecondFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

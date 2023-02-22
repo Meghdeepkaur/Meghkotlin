@@ -88,7 +88,7 @@ class MeghFragment : Fragment() {
             toast.show()
             binding?.etNam?.error=resources.getText(R.string.name_empty)
         }
-        else if(binding?.etId?.text.toString().isEmpty()==true) {
+        else if(binding?.etId?.text?.toString()?.isEmpty()==true) {
             Toast.makeText(activity,
                 "Email cannot be null. Please enter your Email ID",
                 Toast.LENGTH_LONG).show()
@@ -129,9 +129,10 @@ class MeghFragment : Fragment() {
         super.onResume()
         fragNav.updateAppBarTitle("MeghFragment")
     }
-    override fun onDestroy() {
-        super.onDestroy()
-        binding=null
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding= null
     }
 
 

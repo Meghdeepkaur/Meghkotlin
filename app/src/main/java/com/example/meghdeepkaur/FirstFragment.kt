@@ -130,9 +130,9 @@ class FirstFragment : Fragment() {
                 return binding?.root
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        binding=null
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding= null
     }
 
 

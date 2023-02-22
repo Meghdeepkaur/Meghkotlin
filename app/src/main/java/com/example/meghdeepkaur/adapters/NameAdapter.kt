@@ -32,4 +32,8 @@ val arrayList: ArrayList<String>,val recyclerClickInterfaces: RecyclerClickTnter
     override fun getItemCount(): Int {
         return  arrayList.size
     }
+    fun add(string: String){
+        arrayList.add(string)
+        notifyDataSetChanged()
+    }
 }
